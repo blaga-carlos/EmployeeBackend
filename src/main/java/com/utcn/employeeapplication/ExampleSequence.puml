@@ -1,0 +1,17 @@
+@startuml
+actor Client
+participant "EmployeeController" as Controller
+database "EmployeeRepository" as Repository
+database "DepartmentRepository" as DeptRepository
+
+Client -> Controller: initiate request (login)
+activate Controller
+Controller -> Repository: loginEmployee(loginDTO)
+activate Repository
+Repository --> Repository: Retrieve Employee by Email
+Repository --> Repository: Compare Passwords
+Repository --> Controller: Response (Login successful)
+deactivate Repository
+Controller --> Client: Response (Login successful)
+deactivate Controller
+@enduml

@@ -1,0 +1,159 @@
+@startuml
+actor Admin
+actor User
+
+participant "AdminEmployeeController" as AdminController
+participant "UserEmployeeController" as UserController
+participant "EmployeeService" as EmpService
+participant "DepartmentService" as DepService
+
+== Admin Actions ==
+
+Admin -> AdminController: initiate request (add user)
+activate AdminController
+AdminController -> EmpService: SaveEmployee(employee)
+activate EmpService
+EmpService --> EmpService: Save Employee
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (get all users)
+activate AdminController
+AdminController -> EmpService: GetEmployees()
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (get user details)
+activate AdminController
+AdminController -> EmpService: GetEmployee(userId)
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (get all departments))
+activate AdminController
+AdminController -> EmpService: GetAllDepartments()
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (get department details))
+activate AdminController
+AdminController -> EmpService: GetDepartment(departmentId)
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (delete department)
+activate AdminController
+AdminController -> EmpService: DeleteDepartment(departmentId))
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (update department)
+activate AdminController
+AdminController -> EmpService: UpdateDepartment(departmentId))
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (delete user)
+activate AdminController
+AdminController -> EmpService: DeleteEmployee(userId)
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (update user)
+activate AdminController
+AdminController -> EmpService: UpdateEmployee(userId, updatedEmployee)
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+Admin -> AdminController: initiate request (assign user to department)
+activate AdminController
+AdminController -> EmpService: AssignEmployeeToDepartment(userId, departmentId)
+activate EmpService
+EmpService --> AdminController: Response
+deactivate EmpService
+AdminController --> Admin: Response
+deactivate AdminController
+
+== User Actions ==
+
+User -> UserController: initiate request (get all users)
+activate UserController
+UserController -> EmpService: GetEmployees()
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+User -> UserController: initiate request (get user details)
+activate UserController
+UserController -> EmpService: GetEmployee(userId)
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+User -> UserController: initiate request (get all departments)
+activate UserController
+UserController -> EmpService: GetAllDepartments()
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+User -> UserController: initiate request (login)
+activate UserController
+UserController -> EmpService: LoginUser(loginDTO)
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+User -> UserController: initiate request (register)
+activate UserController
+UserController -> EmpService: RegisterUser(user)
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+User -> UserController: initiate request (update profile)
+activate UserController
+UserController -> EmpService: UpdateUser(userId, updatedUser)
+activate EmpService
+EmpService --> UserController: Response
+deactivate EmpService
+UserController --> User: Response
+deactivate UserController
+
+@enduml
